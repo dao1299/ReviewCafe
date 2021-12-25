@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "478136901779",
+    "firebase_url": "https://reviewcafeteria-default-rtdb.firebaseio.com",
+    "project_id": "reviewcafeteria",
+    "storage_bucket": "reviewcafeteria.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478136901779:android:6a8f80f0ad4e063194ad66",
+        "android_client_info": {
+          "package_name": "com.example.reviewcafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "478136901779-fr9lkci8d02q3ua1j2tcisbf0c65c6us.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtdExgSCrPi9KTG3dnud37iEH_BMTQIh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "478136901779-fr9lkci8d02q3ua1j2tcisbf0c65c6us.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478136901779:android:e8baf7961990067394ad66",
+        "android_client_info": {
+          "package_name": "com.example.testauthentication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "478136901779-fr9lkci8d02q3ua1j2tcisbf0c65c6us.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtdExgSCrPi9KTG3dnud37iEH_BMTQIh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "478136901779-fr9lkci8d02q3ua1j2tcisbf0c65c6us.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

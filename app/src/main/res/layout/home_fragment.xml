@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/edtSearchHome"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/edt_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_weight="8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Spinner
+        android:id="@+id/spinnerQuan"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:spinnerMode="dropdown"
+        android:background="@drawable/edt_login"
+        app:layout_constraintEnd_toStartOf="@id/spinnerLoai"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtSearchHome" />
+
+    <Spinner
+        android:id="@+id/spinnerLoai"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:spinnerMode="dropdown"
+        android:background="@drawable/edt_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/spinnerQuan"
+        app:layout_constraintTop_toBottomOf="@id/edtSearchHome" />
+
+
+
+    <FrameLayout
+        android:id="@+id/frameLayoutRcvPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="-10dp"
+        app:layout_constraintTop_toBottomOf="@id/spinnerQuan"
+        tools:listitem="@layout/item_of_post"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

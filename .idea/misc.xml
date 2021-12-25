@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/drawable/bg_button.xml" value="0.3828125" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/drawable/bg_comment_post.xml" value="0.3177083333333333" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/drawable/bg_img.xml" value="0.3828125" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/drawable/bg_iten_detail_post.xml" value="0.2375" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/drawable/bg_login.xml" value="0.2890625" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/drawable/bg_post.xml" value="0.3828125" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/drawable/bg_spinner.xml" value="0.29322916666666665" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/drawable/bg_title.xml" value="0.25" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/drawable/btn_login.xml" value="0.2890625" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/drawable/btn_search.xml" value="0.3828125" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/drawable/custom_circle_indicator.xml" value="0.2890625" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/drawable/edt_login.xml" value="0.2890625" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/drawable/person.xml" value="0.25" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/activity_main.xml" value="0.14" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/blank_layout.xml" value="0.12387387387387387" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/change_password_user.xml" value="0.25" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/change_profile_user.xml" value="0.25" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/detail_post.xml" value="0.22" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/fragment1.xml" value="0.27291666666666664" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/fragment2.xml" value="0.27291666666666664" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/fragment3.xml" value="0.27291666666666664" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/header_menu.xml" value="0.22" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/home.xml" value="0.25" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/home_fragment.xml" value="0.22" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/info_user.xml" value="0.22" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/item_comment.xml" value="0.3015625" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/item_of_post.xml" value="0.27291666666666664" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/item_post.xml" value="0.33" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/layout_main.xml" value="0.27291666666666664" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/login.xml" value="0.1" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/login_layout.xml" value="0.12" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/menu_layout.xml" value="0.1" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/new_post_fragment.xml" value="0.33" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/photo.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/photo_layout.xml" value="0.10185185185185185" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/recycler_view_list_post.xml" value="0.23603603603603604" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/signin_fragment.xml" value="0.25" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/layout/signup_fragment.xml" value="0.27291666666666664" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/menu/main_menu.xml" value="0.22" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/menu/main_menu1.xml" value="0.23603603603603604" />
+        <entry key="..\:/Android/project/ReviewCafe/app/src/main/res/menu/main_menu2.xml" value="0.23603603603603604" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

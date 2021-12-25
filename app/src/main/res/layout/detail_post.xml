@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/crvAvarDetailPost"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="20dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgAvarDetailPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/person" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/txtAuthorDetailPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="30dp"
+                android:text="Slick"
+                app:layout_constraintStart_toEndOf="@id/crvAvarDetailPost"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPagerDetailPost"
+                android:layout_width="match_parent"
+                android:layout_height="330dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/crvAvarDetailPost" />
+
+            <me.relex.circleindicator.CircleIndicator3
+                android:id="@+id/circleIndicator3"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                app:ci_drawable="@drawable/custom_circle_indicator"
+                app:ci_drawable_unselected="@android:color/darker_gray"
+                app:ci_height="6dp"
+                app:ci_width="6dp"
+                app:layout_constraintBottom_toBottomOf="@id/viewPagerDetailPost"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/btnLikePost"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/white"
+                android:scaleType="centerCrop"
+                android:src="@drawable/nfavorite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/circleIndicator3" />
+
+            <ImageView
+                android:id="@+id/btnCommentPost"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/white"
+                android:scaleType="centerCrop"
+                android:src="@drawable/comment"
+                app:layout_constraintStart_toEndOf="@id/btnLikePost"
+                app:layout_constraintTop_toBottomOf="@id/circleIndicator3" />
+
+            <ImageView
+                android:id="@+id/btnSharePost"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/white"
+                android:scaleType="centerCrop"
+                android:src="@drawable/share"
+                app:layout_constraintStart_toEndOf="@id/btnCommentPost"
+                app:layout_constraintTop_toBottomOf="@id/circleIndicator3" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnLikePost">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/bg_item_detail_post"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnLikePost">
+
+                    <TextView
+                        android:id="@+id/txtTitleDetailPost"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center_vertical"
+                        android:text="HIGHLANDS COFFEE"
+                        android:textColor="#000"
+                        android:textSize="25sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/bg_item_detail_post"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnLikePost">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:scaleX="1.2"
+                        android:scaleY="1.2"
+                        android:src="@drawable/location_border" />
+
+                    <TextView
+                        android:id="@+id/txtAddressDetailPost"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="9"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center_vertical"
+                        android:text="23 Lê Văn Lương, Thanh Xuân, Hà Nội"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/bg_item_detail_post"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnLikePost">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:scaleX="1.2"
+                        android:scaleY="1.2"
+                        android:src="@drawable/time" />
+
+                    <TextView
+                        android:id="@+id/txtTimeDetailPost"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="9"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center_vertical"
+                        android:text="08:00-23:00"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/bg_item_detail_post"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnLikePost">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:scaleX="1.2"
+                        android:scaleY="1.2"
+                        android:src="@drawable/price" />
+
+                    <TextView
+                        android:id="@+id/txtPriceDetailPost"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="9"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center_vertical"
+                        android:text="50000-700000"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/bg_item_detail_post"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnLikePost">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:scaleX="1.2"
+                        android:scaleY="1.2"
+                        android:src="@drawable/description" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="9"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center_vertical"
+                        android:text="Mô tả:"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/txtDescriptionDetailPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="10dp"
+                    android:justificationMode="inter_word"
+                    android:text="@string/tempcontent"
+                    android:textSize="16sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_item_detail_post"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="10"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        >
+                        <TextView
+                            android:layout_marginStart="16dp"
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_weight="2"
+                            android:textSize="18sp"
+                            android:layout_marginEnd="8dp"
+                            android:gravity="center_vertical"
+                            android:textStyle="bold"
+                            android:text="Bình luận" />
+
+                        <EditText
+                            android:id="@+id/edtCommentDetailPost"
+                            android:inputType="textMultiLine"
+                            android:layout_width="0dp"
+                            android:padding="2dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/edt_login"
+                            android:layout_weight="6" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="Đăng"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:textSize="18dp"
+                            android:layout_weight="2"
+                            android:layout_marginStart="6dp"
+                            android:textColor="#00f"
+                            android:backgroundTint="#fff" />
+                    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        tools:listitem="@layout/item_comment"
+                        android:id="@+id/rcvCommentDetailPost" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

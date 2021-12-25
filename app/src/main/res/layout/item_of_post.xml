@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_post"
+    android:id="@+id/layoutItemPost"
+    android:padding="10dp"
+    android:layout_marginBottom="14dp"
+    android:weightSum="10">
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="174dp"
+        android:src="@drawable/highlands"
+        android:scaleType="fitXY"
+
+        android:id="@+id/imgThumbPost"
+        android:layout_weight="3" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="7"
+        android:orientation="vertical"
+        android:layout_marginStart="6dp"
+        android:weightSum="10"
+        >
+        <TextView
+            android:id="@+id/txtTitlePost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HighLand COFFEEEEEEEEE"
+            android:textAllCaps="true"
+            android:textColor="#000"
+            android:textSize="22sp"
+            />
+
+        <TextView
+            android:id="@+id/txtAuthorPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Tác giả: Slick hihi 123 roi lai 456"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/txtPricePost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@android:color/holo_orange_dark"
+            android:text="70.000đ - 100.000đ" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+            <TextView
+                android:id="@+id/txtQuanPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Thanh Xuân"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/location_border"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

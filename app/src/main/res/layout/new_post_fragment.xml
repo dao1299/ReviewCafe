@@ -1,0 +1,234 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/edtTitleNewPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="Tiêu đề:"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edt_login"
+            android:hint="Tiêu đề"
+            android:paddingStart="10dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mô tả chung:"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtDescriptionNewPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edt_login"
+            android:gravity="start"
+            android:hint="Mô tả chung"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:maxLines="10"
+            android:minLines="6"
+            android:paddingStart="10dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:scrollbars="vertical" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="vertical"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
+                    android:gravity="center_vertical"
+                    android:text="Địa chỉ:"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtDetailAddressNewPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="8.5"
+                    android:background="@drawable/edt_login"
+                    android:gravity="start"
+                    android:hint="Số nhà, ngõ, phố"
+                    android:inputType="textMultiLine"
+                    android:lines="6"
+                    android:maxLines="10"
+                    android:minLines="6"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="6dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:scrollbars="vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:orientation="vertical"
+                android:weightSum="10">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_marginStart="6dp"
+                    android:text="Quận:"
+                    android:gravity="center_vertical"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerQuanNewPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="3.5"
+                    android:background="@drawable/bg_spinner"
+                    android:paddingStart="10dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_marginStart="6dp"
+                    android:text="Thể loại:"
+                    android:gravity="center_vertical"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerLoaiNewPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="3.5"
+                    android:background="@drawable/bg_spinner"
+                    android:paddingStart="10dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Giá:"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtPriceNewPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edt_login"
+            android:hint="Khoảng giá"
+            android:paddingStart="10dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Giờ mở cửa:"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtTimeNewPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edt_login"
+            android:hint="Giờ mở cửa"
+            android:paddingStart="10dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ảnh mô tả:"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            >
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/btnAddPhoto"
+                android:src="@drawable/add_photo" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rcvListImage"
+                tools:listitem="@layout/photo_layout"/>
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPostNewPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_search"
+            android:padding="15dp"
+            android:text="Đăng bài"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+    </LinearLayout>
+</ScrollView>

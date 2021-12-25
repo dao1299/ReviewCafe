@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ReviewCafe</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="tempcontent">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias assumenda atque beatae deserunt et facere id illo magni, modi obcaecati odit officiis pariatur possimus sequi tempora voluptate. Dolorum, rerum!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cumque eaque eligendi explicabo facere necessitatibus similique veniam. Et incidunt natus nobis non provident, quia quidem, ratione reiciendis sit ut velit.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci cupiditate, dicta dignissimos dolores exercitationem expedita itaque odio quae quam quibusdam quisquam quod rem, repellat reprehenderit totam veniam, voluptas voluptatibus.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet blanditiis consectetur dignissimos harum minima nemo nihil, quia ratione similique sint. Ad commodi eos itaque laboriosam officiis placeat quidem, repudiandae veritatis?
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam corporis deserunt non odit quidem velit. Dicta dolorem est molestiae molestias reprehenderit sequi, temporibus. Deleniti ex laudantium porro tempore voluptatem voluptates!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium culpa, dolore error et non quae tenetur. Aliquam est eveniet expedita facilis hic id nisi quam quasi reprehenderit vel. Commodi, temporibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorem et ipsa molestiae numquam tempora tempore temporibus ut? Alias cum ducimus eligendi et harum minus nemo nulla sunt unde vel.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, impedit, odio. Fugit magnam nemo quos veritatis. Accusamus aliquid, at ea eaque eveniet fugiat hic maiores nesciunt, pariatur quos tempore vitae!
+    </string>
+</resources>

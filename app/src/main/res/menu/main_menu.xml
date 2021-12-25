@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_home"
+            android:title="Home"
+            android:icon="@drawable/home" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="User">
+            <menu>
+                <item
+                    android:id="@+id/menu_profile"
+                    android:title="Profile"
+                    android:icon="@drawable/person" />
+                <item
+                    android:id="@+id/menu_add_post"
+                    android:title="New post"
+                    android:icon="@drawable/add_post" />
+                <item
+                    android:id="@+id/menu_favorite"
+                    android:title="Favorite list"
+                    android:icon="@drawable/nfavorite" />
+                <item
+                    android:id="@+id/menu_location"
+                    android:title="My Location"
+                    android:icon="@drawable/location_border" />
+                <item
+                    android:id="@+id/menu_logout"
+                    android:title="Logout"
+                    android:icon="@drawable/logout" />
+            </menu>
+        </item>
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="Rate App">
+            <menu>
+                <item
+                    android:title="Rate app"
+                    android:icon="@drawable/rate_app" />
+                <item
+                    android:title="Share app"
+                    android:icon="@drawable/share" />
+            </menu>
+        </item>
+    </group>
+
+</menu>

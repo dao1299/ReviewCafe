@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/layoutComment"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="12dp"
+        app:cardCornerRadius="25dp"
+        >
+        <ImageView
+            android:id="@+id/imgUserComment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/person" />
+    </androidx.cardview.widget.CardView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="6dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_comment_post"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Slick"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:id="@+id/txtNameUserComment"
+            />
+        <TextView
+            android:id="@+id/txtContentCommentPost"
+            android:layout_marginTop="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This is comment post in your area\nAnother line\nAnother line"/>
+    </LinearLayout>
+</LinearLayout>
