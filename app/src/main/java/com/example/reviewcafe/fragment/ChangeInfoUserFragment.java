@@ -1,7 +1,6 @@
 package com.example.reviewcafe.fragment;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
@@ -40,12 +39,13 @@ public class ChangeInfoUserFragment extends Fragment {
     ProgressDialog progressDialog;
     CardView cardViewAvar;
     ImageView imgAvarChangeProfileUser;
-    EditText edtNameUserChangeProfile,edtPhoneNumberUserChangeProfile,edtEmailUserChangeProfile;
+    EditText edtNameUserChangeProfile, edtPhoneNumberUserChangeProfile, edtEmailUserChangeProfile;
     Button btnChangeProfile;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.change_profile_user,container,false);
+        View view = inflater.inflate(R.layout.change_profile_user, container, false);
         return view;
     }
 
@@ -58,8 +58,8 @@ public class ChangeInfoUserFragment extends Fragment {
     }
 
     private void addEventClick() {
-        btnChangeProfile.setOnClickListener(view ->{
-            progressDialog = ProgressDialog.show(getActivity(), "Cập nhật hồ sơ!","Đợi tí tẹo thui (>\"<)", true);
+        btnChangeProfile.setOnClickListener(view -> {
+            progressDialog = ProgressDialog.show(getActivity(), "Cập nhật hồ sơ!", "Đợi tí tẹo thui (>\"<)", true);
             changeProfile();
         });
         imgAvarChangeProfileUser.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +85,7 @@ public class ChangeInfoUserFragment extends Fragment {
         TedPermission.create()
                 .setPermissionListener(permissionListener)
                 .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
-                .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA)
+                .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
                 .check();
     }
 
@@ -94,7 +94,7 @@ public class ChangeInfoUserFragment extends Fragment {
                 .show(new TedBottomSheetDialogFragment.OnImageSelectedListener() {
                     @Override
                     public void onImageSelected(Uri uri) {
-                        progressDialog = ProgressDialog.show(getActivity(), "Cập nhật hồ sơ!","Đợi tí tẹo thui (>\"<)", true);
+                        progressDialog = ProgressDialog.show(getActivity(), "Cập nhật hồ sơ!", "Đợi tí tẹo thui (>\"<)", true);
                         imgAvarChangeProfileUser.setImageURI(uri);
                         changePhoto(uri);
                     }
@@ -147,8 +147,6 @@ public class ChangeInfoUserFragment extends Fragment {
                         if (task.isSuccessful()) {
                             Toast.makeText(getActivity(), "Thành công", Toast.LENGTH_SHORT).show();
                             changeMenu();
-
-
                         }
                     }
                 });
@@ -156,16 +154,17 @@ public class ChangeInfoUserFragment extends Fragment {
     }
 
     private boolean validate() {
-        if (edtEmailUserChangeProfile.getText().toString().isEmpty()
-        || edtNameUserChangeProfile.getText().toString().isEmpty()) return false;
-        return true;
+        return !edtEmailUserChangeProfile.getText().toString().isEmpty()
+                && !edtNameUserChangeProfile.getText().toString().isEmpty();
     }
 
     private void showCurrentInfo() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user.getPhotoUrl()!=null) Glide.with(this).load(user.getPhotoUrl()).into(imgAvarChangeProfileUser);
-        if (user.getDisplayName()!=null) edtNameUserChangeProfile.setText(user.getDisplayName());
-        if (user.getPhoneNumber()!=null) edtPhoneNumberUserChangeProfile.setText(user.getPhoneNumber());
+        if (user.getPhotoUrl() != null)
+            Glide.with(this).load(user.getPhotoUrl()).into(imgAvarChangeProfileUser);
+        if (user.getDisplayName() != null) edtNameUserChangeProfile.setText(user.getDisplayName());
+        if (user.getPhoneNumber() != null)
+            edtPhoneNumberUserChangeProfile.setText(user.getPhoneNumber());
         edtEmailUserChangeProfile.setText(user.getEmail());
     }
 
@@ -176,13 +175,14 @@ public class ChangeInfoUserFragment extends Fragment {
         edtEmailUserChangeProfile = view.findViewById(R.id.edtEmailUserChangeProfile);
         btnChangeProfile = view.findViewById(R.id.btnChangeProfile);
     }
-    private void changeMenu(){
-        NavigationView navigationView=getActivity().findViewById(R.id.navView);
-        MainActivity mainActivity =new MainActivity();
+
+    private void changeMenu() {
+        NavigationView navigationView = getActivity().findViewById(R.id.navView);
+        MainActivity mainActivity = new MainActivity();
         mainActivity.setMenuInflater(navigationView);
         TextView txtTitle = getActivity().findViewById(R.id.txtTitle);
         txtTitle.setText("Trang chủ");
-        getParentFragmentManager().beginTransaction().replace(R.id.containerContentMain,HomeFragment.newInstance("data"),"TAG").commit();
+        getParentFragmentManager().beginTransaction().replace(R.id.containerContentMain, HomeFragment.newInstance("data"), "TAG").commit();
     }
 
 }

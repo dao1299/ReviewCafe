@@ -68,6 +68,7 @@ public class SignInFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             setMenu();
+
                             HomeFragment homeFragment = HomeFragment.newInstance("slicckkkkk");
                             FragmentManager fragmentManager = getParentFragmentManager();
                             fragmentManager.beginTransaction().replace(R.id.containerContentMain,homeFragment,"TAG").commit();

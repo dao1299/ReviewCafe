@@ -20,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpFragment extends Fragment {
     FirebaseAuth  firebaseAuth;
@@ -68,6 +70,7 @@ public class SignUpFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             updateProfile();
+                            pushUserToFirebase();
                             Toast.makeText(getActivity(), "Đăng ký thành công roài nè!",
                                     Toast.LENGTH_SHORT).show();
                             fragment = HomeFragment.newInstance(edtNameUserSignup.getText().toString());
@@ -81,6 +84,10 @@ public class SignUpFragment extends Fragment {
                 });
     }
 
+    private void pushUserToFirebase() {
+
+    }
+
     private void updateProfile() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -91,6 +98,11 @@ public class SignUpFragment extends Fragment {
         user.updateProfile(profileUpdates)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("user").push();
+                        ref.child("email").setValue(user.getEmail());
+                        ref.child("name").setValue(user.getDisplayName());
+                        ref.child("Uid").setValue(user.getUid());
+                        ref.child("list_favorite").setValue(null);
                         Toast.makeText(getActivity(), "Done", Toast.LENGTH_SHORT).show();
                     }
                 });

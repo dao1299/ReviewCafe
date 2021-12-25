@@ -1,5 +1,6 @@
 package com.example.reviewcafe.fragment;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,12 +66,12 @@ public class ListPostFragment extends Fragment {
     }
 
     private void getData() {
-        listPost.add(new PostModel("P001", "Highlands coffee 1", R.drawable.highlands, "Slick 123", "70000-100000", "Thanh Xuan"));
-        listPost.add(new PostModel("P002", "Highlands coffee 2", R.drawable.favorite, "Slick 123", "70000-100000", "Thanh Xuan"));
-        listPost.add(new PostModel("P003", "Highlands coffee 3", R.drawable.location, "Slick 123", "70000-100000", "Thanh Xuan"));
-        listPost.add(new PostModel("P004", "Highlands coffee 4", R.drawable.logout, "Slick 123", "70000-100000", "Thanh Xuan"));
-        listPost.add(new PostModel("P005", "Highlands coffee 5", R.drawable.person, "Slick 123", "70000-100000", "Thanh Xuan"));
-        listPost.add(new PostModel("P006", "Highlands coffee 6", R.drawable.nfavorite, "Slick 123", "70000-100000", "Thanh Xuan"));
+        listPost.add(new PostModel("P001", "Highlands coffee 1", Uri.parse("D:\\Android\\project\\ReviewCafe\\app\\src\\main\\res\\drawable\\highlands.jpg"), "Slick 123", "74000-100000", "Thanh Xuan"));
+        listPost.add(new PostModel("P002", "Highlands coffee 2", Uri.parse("D:\\Android\\project\\ReviewCafe\\app\\src\\main\\res\\drawable\\highlands.jpg"), "Slick 123", "701000-100000", "Thanh Xuan"));
+        listPost.add(new PostModel("P003", "Highlands coffee 3", Uri.parse("D:\\Android\\project\\ReviewCafe\\app\\src\\main\\res\\drawable\\highlands.jpg"), "Slick 123", "70300-100000", "Thanh Xuan"));
+        listPost.add(new PostModel("P004", "Highlands coffee 4", Uri.parse("D:\\Android\\project\\ReviewCafe\\app\\src\\main\\res\\drawable\\highlands.jpg"), "Slick 123", "72000-100000", "Thanh Xuan"));
+        listPost.add(new PostModel("P005", "Highlands coffee 5", Uri.parse("D:\\Android\\project\\ReviewCafe\\app\\src\\main\\res\\drawable\\highlands.jpg"), "Slick 123", "70000-100000", "Thanh Xuan"));
+        listPost.add(new PostModel("P006", "Highlands coffee 6", Uri.parse("D:\\Android\\project\\ReviewCafe\\app\\src\\main\\res\\drawable\\highlands.jpg"), "Slick 123", "7050-100000", "Thanh Xuan"));
     }
 
 }
