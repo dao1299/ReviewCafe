@@ -18,6 +18,7 @@ import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.reviewcafe.fragment.HomeFragment;
 import com.example.reviewcafe.fragment.InfoUserFragment;
 import com.example.reviewcafe.fragment.ListPostFragment;
@@ -70,15 +71,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.inflateMenu(R.menu.main_menu1);
             txtNameUserMenu.setText("");
             cardView.setVisibility(View.INVISIBLE);
+            imgAvarUserMenu.setVisibility(View.INVISIBLE);
         }
             else
         {
             txtNameUserMenu.setText(firebaseUser.getDisplayName()+"");
+            cardView.setVisibility(View.VISIBLE);
             if (firebaseUser.getPhotoUrl()==null){
-                cardView.setVisibility(View.VISIBLE);
                 imgAvarUserMenu.setImageResource(R.drawable.person);
             }else{
-
+                imgAvarUserMenu.setImageURI(firebaseUser.getPhotoUrl());
             }
             navigationView.inflateMenu(R.menu.main_menu2);
         }

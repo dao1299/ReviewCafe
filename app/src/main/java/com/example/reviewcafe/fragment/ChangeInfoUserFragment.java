@@ -1,7 +1,9 @@
 package com.example.reviewcafe.fragment;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,13 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.normal.TedPermission;
+
+import java.util.List;
+
+import gun0912.tedbottompicker.TedBottomPicker;
+import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
 
 public class ChangeInfoUserFragment extends Fragment {
     ProgressDialog progressDialog;
@@ -53,6 +62,63 @@ public class ChangeInfoUserFragment extends Fragment {
             progressDialog = ProgressDialog.show(getActivity(), "Cập nhật hồ sơ!","Đợi tí tẹo thui (>\"<)", true);
             changeProfile();
         });
+        imgAvarChangeProfileUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkPermision();
+            }
+        });
+    }
+
+    private void checkPermision() {
+        PermissionListener permissionListener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                addPhoto();
+            }
+
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions) {
+                Toast.makeText(getActivity(), "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+            }
+        };
+        TedPermission.create()
+                .setPermissionListener(permissionListener)
+                .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA)
+                .check();
+    }
+
+    private void addPhoto() {
+        TedBottomPicker.with(getActivity())
+                .show(new TedBottomSheetDialogFragment.OnImageSelectedListener() {
+                    @Override
+                    public void onImageSelected(Uri uri) {
+                        progressDialog = ProgressDialog.show(getActivity(), "Cập nhật hồ sơ!","Đợi tí tẹo thui (>\"<)", true);
+                        imgAvarChangeProfileUser.setImageURI(uri);
+                        changePhoto(uri);
+                    }
+                });
+    }
+
+    private void changePhoto(Uri uri) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setPhotoUri(uri)
+                .build();
+        user.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        progressDialog.dismiss();
+                        if (task.isSuccessful()) {
+
+                            Toast.makeText(getActivity(), "Thành công", Toast.LENGTH_SHORT).show();
+                            changeMenu();
+                        }
+                    }
+                });
     }
 
     private void changeProfile() {
@@ -81,7 +147,7 @@ public class ChangeInfoUserFragment extends Fragment {
                         if (task.isSuccessful()) {
                             Toast.makeText(getActivity(), "Thành công", Toast.LENGTH_SHORT).show();
                             changeMenu();
-                            getParentFragmentManager().beginTransaction().replace(R.id.containerContentMain,HomeFragment.newInstance("data"),"TAG").commit();
+
 
                         }
                     }
@@ -116,6 +182,7 @@ public class ChangeInfoUserFragment extends Fragment {
         mainActivity.setMenuInflater(navigationView);
         TextView txtTitle = getActivity().findViewById(R.id.txtTitle);
         txtTitle.setText("Trang chủ");
+        getParentFragmentManager().beginTransaction().replace(R.id.containerContentMain,HomeFragment.newInstance("data"),"TAG").commit();
     }
 
 }

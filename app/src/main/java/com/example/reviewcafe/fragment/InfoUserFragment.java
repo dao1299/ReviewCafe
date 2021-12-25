@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.reviewcafe.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,6 +21,7 @@ public class InfoUserFragment extends Fragment {
     Fragment fragment;
     TextView txtNameUserInfo,txtPhoneNumberInfo,txtEmailInfo;
     Button btnChangeInfo,btnChangePassword;
+    ImageView imgUserInfo;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class InfoUserFragment extends Fragment {
         txtNameUserInfo = view.findViewById(R.id.txtNameUserInfo);
         txtPhoneNumberInfo = view.findViewById(R.id.txtPhoneNumberInfo);
         txtEmailInfo = view.findViewById(R.id.txtEmailInfo);
+        imgUserInfo = view.findViewById(R.id.imgUserInfo);
     }
     public void getData(View view) {
         mapId(view);
@@ -62,6 +66,7 @@ public class InfoUserFragment extends Fragment {
             txtNameUserInfo.setText(""+user.getDisplayName());
             txtPhoneNumberInfo.setText(""+user.getPhoneNumber());
             txtEmailInfo.setText(""+user.getEmail());
+            Glide.with(this).load(user.getPhotoUrl()).into(imgUserInfo);
         }
     }
 }
