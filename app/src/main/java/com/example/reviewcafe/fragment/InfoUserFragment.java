@@ -18,21 +18,20 @@ import com.google.firebase.auth.FirebaseUser;
 public class InfoUserFragment extends Fragment {
     Fragment fragment;
     TextView txtNameUserInfo,txtPhoneNumberInfo,txtEmailInfo;
+    Button btnChangeInfo,btnChangePassword;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.info_user,container,false);
+        getData(view);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button btnChangeInfo = view.findViewById(R.id.btnChangeInfo);
-        Button btnChangePassword = view.findViewById(R.id.btnChangePassword);
-        txtNameUserInfo = view.findViewById(R.id.txtNameUserInfo);
-        txtPhoneNumberInfo = view.findViewById(R.id.txtPhoneNumberInfo);
-        txtEmailInfo = view.findViewById(R.id.txtEmailInfo);
+
+//        getData(view);
         btnChangeInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,10 +46,17 @@ public class InfoUserFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.containerContentMain,fragment,"TAG").commit();
             }
         });
-        getData();
-    }
 
-    private void getData() {
+    }
+    private void mapId(View view){
+        btnChangeInfo = view.findViewById(R.id.btnChangeInfo);
+        btnChangePassword = view.findViewById(R.id.btnChangePassword);
+        txtNameUserInfo = view.findViewById(R.id.txtNameUserInfo);
+        txtPhoneNumberInfo = view.findViewById(R.id.txtPhoneNumberInfo);
+        txtEmailInfo = view.findViewById(R.id.txtEmailInfo);
+    }
+    public void getData(View view) {
+        mapId(view);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user!=null) {
             txtNameUserInfo.setText(""+user.getDisplayName());
