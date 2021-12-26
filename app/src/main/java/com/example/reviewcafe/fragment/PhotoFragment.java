@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.reviewcafe.R;
 import com.example.reviewcafe.model.PhotoModel;
 
@@ -23,7 +24,7 @@ public class PhotoFragment extends Fragment {
         Bundle bundle = getArguments();
         PhotoModel photo = (PhotoModel) bundle.get("objPhoto");
         ImageView imgPhoto = view.findViewById(R.id.imgPhoto);
-        imgPhoto.setImageResource(photo.getSrcImg());
+        Glide.with(this).load(photo.getSrcImg()).into(imgPhoto);
         return view;
     }
 

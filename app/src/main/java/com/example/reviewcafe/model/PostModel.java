@@ -2,9 +2,11 @@ package com.example.reviewcafe.model;
 
 
 
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
-public class PostModel {
+public class PostModel implements Serializable {
     private String idAuthor;
     private String titlePost;
     private String srcImg;
@@ -16,6 +18,7 @@ public class PostModel {
     private List<String> listImg;
     private String district;
     private String theLoai;
+
 
     public PostModel(String idPost, String titlePost, String srcImg, String authorPost, String pricePost, String addressPost, String time, String description, List<String> listImg, String district, String theLoai) {
         this.idAuthor = idPost;
@@ -62,6 +65,14 @@ public class PostModel {
 
     public List<String> getListImg() {
         return listImg;
+    }
+
+    public String getTheLoai() {
+        return theLoai;
+    }
+
+    public void setTheLoai(String theLoai) {
+        this.theLoai = theLoai;
     }
 
     public void setListImg(List<String> listImg) {

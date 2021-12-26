@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.reviewcafe.R;
 import com.example.reviewcafe.model.PostModel;
 
@@ -22,10 +23,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     ArrayList<PostModel> listPost;
     ClickListener clickListener;
+    Context context;
 
     public PostAdapter(ArrayList<PostModel> listPost, ClickListener clickListener) {
         this.listPost = listPost;
         this.clickListener = clickListener;
+    }
+
+    public PostAdapter(ArrayList<PostModel> listPost, ClickListener clickListener, Context context) {
+        this.listPost = listPost;
+        this.clickListener = clickListener;
+        this.context = context;
     }
 
     public PostAdapter(ArrayList<PostModel> listPost) {
@@ -47,7 +55,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         holder.txtAuthor.setText(postElement.getAuthorPost());
         holder.txtPrice.setText(postElement.getPricePost());
         holder.txtAddress.setText(postElement.getAddressPost());
-        holder.imgPost.setImageURI(Uri.parse(postElement.getSrcImg()));
+//        holder.imgPost.setImageURI(Uri.parse(postElement.getSrcImg()));
+        Glide.with(context).load(postElement.getSrcImg()).into(holder.imgPost);
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

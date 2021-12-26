@@ -1,24 +1,24 @@
 package com.example.reviewcafe.model;
 
 public class CommentModel {
-    private int imgUser;
+    private String imgUser;
     private String nameUser;
     private String contentComment;
 
     public CommentModel() {
     }
 
-    public CommentModel(int imgUser, String nameUser, String contentComment) {
+    public CommentModel(String imgUser, String nameUser, String contentComment) {
         this.imgUser = imgUser;
         this.nameUser = nameUser;
         this.contentComment = contentComment;
     }
 
-    public int getImgUser() {
+    public String getImgUser() {
         return imgUser;
     }
 
-    public void setImgUser(int imgUser) {
+    public void setImgUser(String imgUser) {
         this.imgUser = imgUser;
     }
 

@@ -3,17 +3,17 @@ package com.example.reviewcafe.model;
 import java.io.Serializable;
 
 public class PhotoModel implements Serializable {
-    private int srcImg;
+    private String srcImg;
 
-    public PhotoModel(int srcImg) {
+    public PhotoModel(String srcImg) {
         this.srcImg = srcImg;
     }
 
-    public int getSrcImg() {
+    public String getSrcImg() {
         return srcImg;
     }
 
-    public void setSrcImg(int srcImg) {
+    public void setSrcImg(String srcImg) {
         this.srcImg = srcImg;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.reviewcafe.fragment;
 
+import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.reviewcafe.R;
 import com.example.reviewcafe.adapter.PostAdapter;
 import com.example.reviewcafe.model.PostModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +31,7 @@ public class ListPostFragment extends Fragment {
     RecyclerView recyclerViewPost;
     PostAdapter postAdapter;
     ArrayList<PostModel> listPost = new ArrayList<>();
+    ProgressDialog progressDialog;
 
     private ListPostFragment(){
 
@@ -58,20 +65,33 @@ public class ListPostFragment extends Fragment {
             @Override
             public void onItemClick(int position) {
 //                System.out.println(position);
-                Fragment fragment = DetailPostFragment.newInstance("data");
+                PostModel postModel = listPost.get(position);
+                Fragment fragment = DetailPostFragment.newInstance(postModel);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.containerContentMain,fragment,"TAG").commit();
             }
-        });
+        },getActivity());
         recyclerViewPost.setAdapter(postAdapter);
     }
 
     private void getData() {
-//        listPost.add(new PostModel("P001", "Highlands coffee 1", Uri.parse("D:\\Android\\project\\ReviewCafe\\app\\src\\main\\res\\drawable\\highlands.jpg"), "Slick 123", "74000-100000", "Thanh Xuan"));
-//        listPost.add(new PostModel("P002", "Highlands coffee 2", Uri.parse("D:\\Android\\project\\ReviewCafe\\app\\src\\main\\res\\drawable\\highlands.jpg"), "Slick 123", "701000-100000", "Thanh Xuan"));
-//        listPost.add(new PostModel("P003", "Highlands coffee 3", Uri.parse("D:\\Android\\project\\ReviewCafe\\app\\src\\main\\res\\drawable\\highlands.jpg"), "Slick 123", "70300-100000", "Thanh Xuan"));
-//        listPost.add(new PostModel("P004", "Highlands coffee 4", Uri.parse("D:\\Android\\project\\ReviewCafe\\app\\src\\main\\res\\drawable\\highlands.jpg"), "Slick 123", "72000-100000", "Thanh Xuan"));
-//        listPost.add(new PostModel("P005", "Highlands coffee 5", Uri.parse("D:\\Android\\project\\ReviewCafe\\app\\src\\main\\res\\drawable\\highlands.jpg"), "Slick 123", "70000-100000", "Thanh Xuan"));
-//        listPost.add(new PostModel("P006", "Highlands coffee 6", Uri.parse("D:\\Android\\project\\ReviewCafe\\app\\src\\main\\res\\drawable\\highlands.jpg"), "Slick 123", "7050-100000", "Thanh Xuan"));
+        progressDialog = ProgressDialog.show(getActivity(),"" ,"Đợi tí tẹo ha (>\"<)", true);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference("post");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    listPost.add(dataSnapshot.getValue(PostModel.class));
+                }
+                postAdapter.notifyDataSetChanged();
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }

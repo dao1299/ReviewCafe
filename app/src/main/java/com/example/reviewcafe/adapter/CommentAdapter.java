@@ -1,5 +1,6 @@
 package com.example.reviewcafe.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.reviewcafe.R;
 import com.example.reviewcafe.model.CommentModel;
 
@@ -23,10 +25,12 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
 
     List<CommentModel> listComment;
     ClickListener clickListener;
+    Context context;
 
-    public CommentAdapter(List<CommentModel> listComment, ClickListener clickListener) {
+    public CommentAdapter(List<CommentModel> listComment, ClickListener clickListener, Context context) {
         this.listComment = listComment;
         this.clickListener = clickListener;
+        this.context = context;
     }
 
     @NonNull
@@ -40,7 +44,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull CommentAdapter.ViewHolder holder, int position) {
         CommentModel commentElement = listComment.get(position);
-        holder.imgUser.setImageResource(commentElement.getImgUser());
+        Glide.with(context).load(commentElement.getImgUser()).into(holder.imgUser);
         holder.txtNameUser.setText(commentElement.getNameUser());
         holder.txtComment.setText(commentElement.getContentComment());
 //        holder.layout.setOnClickListener(new View.OnClickListener() {

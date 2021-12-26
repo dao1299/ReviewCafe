@@ -204,8 +204,7 @@ public class NewPostFragment extends Fragment {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         if (filePath != null) {
-            ProgressDialog progressDialog
-                    = new ProgressDialog(getActivity());
+            ProgressDialog progressDialog= new ProgressDialog(getActivity());
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
             StorageReference ref = storageReference.child(UUID.randomUUID().toString());
@@ -218,9 +217,6 @@ public class NewPostFragment extends Fragment {
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         listUri2Upload.add(uri.toString());
-                                        if (listUri2Upload.size()==size){
-//                                            writeToFirebaseDatabase();
-                                        }
                                     }
                                 });
                             })
