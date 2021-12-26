@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.openDrawer(Gravity.LEFT);
             }
         });
-        displayView(R.id.menu_home);
+        displayView(R.id.menu_add_post);
     }
 
     public void setMenuInflater(NavigationView navigationView) {

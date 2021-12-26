@@ -1,6 +1,8 @@
 package com.example.reviewcafe.fragment;
 
 import android.Manifest;
+import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,21 +24,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.reviewcafe.R;
 import com.example.reviewcafe.adapter.PhotoUriAdapter;
 import com.example.reviewcafe.model.PostModel;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import gun0912.tedbottompicker.TedBottomPicker;
 import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
 
 public class NewPostFragment extends Fragment {
+    int size=0;
     Spinner spinnerQuan,spinnerLoai;
     EditText edtTitleNewPost,edtDescriptionNewPost,edtDetailAddressNewPost,edtPriceNewPost,edtTimeNewPost;
     AppCompatImageButton btnAddPhoto;
@@ -44,6 +52,9 @@ public class NewPostFragment extends Fragment {
     RecyclerView rcvListPhoto;
     PhotoUriAdapter photoUriAdapter;
     List<Uri> uriListImage=new ArrayList<>();
+    ProgressDialog progressDialog;
+    List<String> listUri2Upload=new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -70,6 +81,7 @@ public class NewPostFragment extends Fragment {
         btnPostNewPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog = ProgressDialog.show(getActivity(), "Đăng bài","Đợi tí tẹo thôi mờ (>\"<)", true);
                 post();
             }
         });
@@ -77,27 +89,31 @@ public class NewPostFragment extends Fragment {
 
     private void post() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        PostModel post = new PostModel(user.getUid(),
-//                edtTitleNewPost.getText().toString().trim(),
-//                uriListImage.get(0),
-//                user.getDisplayName(),
-//                edtPriceNewPost.getText().toString().trim(),
-//                edtDetailAddressNewPost.getText().toString().trim(),
-//                edtTimeNewPost.getText().toString().trim(),
-//                edtDescriptionNewPost.getText().toString().trim(),
-//                uriListImage,
-//                spinnerQuan.getSelectedItem().toString(),
-//                spinnerLoai.getSelectedItem().toString()
-//                );
-        DatabaseReference mDatabase;
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("post").push();
-//        mDatabase.child("users").child(user.getUid()).setValue(post);
-        ref.child("titlePost").setValue(edtTitleNewPost.getText().toString().trim());
+        String urlThumb="";
+        if (listUri2Upload.size()>0) urlThumb=listUri2Upload.get(0);
+        PostModel post = new PostModel(user.getUid(),
+                edtTitleNewPost.getText().toString().trim(),
+                urlThumb,
+                user.getDisplayName(),
+                edtPriceNewPost.getText().toString().trim(),
+                edtDetailAddressNewPost.getText().toString().trim(),
+                edtTimeNewPost.getText().toString().trim(),
+                edtDescriptionNewPost.getText().toString().trim(),
+                listUri2Upload,
+                spinnerQuan.getSelectedItem().toString(),
+                spinnerLoai.getSelectedItem().toString()
+                );
+        writeToFirebaseDatabase(post);
+
+//        DatabaseReference mDatabase;
+//        mDatabase = FirebaseDatabase.getInstance().getReference();
+//        DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("post").push();
+//        mDatabase.child("users").child("idPost").setValue(user.getUid());
+//        ref.child("titlePost").setValue(edtTitleNewPost.getText().toString().trim());
 //        ref.child("srcImg").setValue(uriListImage.get(0));
-        ref.child("authorPost").setValue(user.getDisplayName());
-        ref.child("pricePost").setValue(edtPriceNewPost.getText().toString().trim());
-        ref.child("addressPost").setValue(edtDetailAddressNewPost.getText().toString().trim());
+//        ref.child("authorPost").setValue(user.getDisplayName());
+//        ref.child("pricePost").setValue(edtPriceNewPost.getText().toString().trim());
+//        ref.child("addressPost").setValue(edtDetailAddressNewPost.getText().toString().trim());
 //        ref.child("time").setValue(edtTimeNewPost.getText().toString().trim());
 //        ref.child("description").setValue(edtDescriptionNewPost.getText().toString().trim());
 //        ref.child("listImg").setValue(uriListImage);
@@ -124,7 +140,6 @@ public class NewPostFragment extends Fragment {
             public void onPermissionGranted() {
                 addPhoto();
             }
-
             @Override
             public void onPermissionDenied(List<String> deniedPermissions) {
                 Toast.makeText(getActivity(), "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
@@ -138,6 +153,26 @@ public class NewPostFragment extends Fragment {
     }
 
     private void addPhoto() {
+        listUri2Upload.clear();
+//        TedBottomPicker.with(getActivity())
+//                .setPeekHeight(1600)
+//                .showTitle(false)
+//                .setCompleteButtonText("Done")
+//                .setEmptySelectionText("No Select")
+//                .showMultiImage(new TedBottomSheetDialogFragment.OnMultiImageSelectedListener() {
+//                    @Override
+//                    public void onImagesSelected(List<Uri> uriList) {
+//                        if (uriList!=null){
+//                            photoUriAdapter.setDataPhoto(uriList);
+//                            uriListImage=uriList;
+//                        }
+//                    }
+//                });
+//        System.out.println("Result: ");
+//        for (Uri x:uriListImage){
+//            System.out.println(x.getPath());
+//        }
+
         TedBottomPicker.with(getActivity())
                 .setPeekHeight(1600)
                 .showTitle(false)
@@ -147,17 +182,69 @@ public class NewPostFragment extends Fragment {
                     @Override
                     public void onImagesSelected(List<Uri> uriList) {
                         if (uriList!=null){
+//                            uriListImage=uriList;
                             photoUriAdapter.setDataPhoto(uriList);
-                            uriListImage=uriList;
+                            size=uriList.size();
+                            uploadList2Firebase(uriList);
                         }
                     }
                 });
-        System.out.println("Result: ");
-        for (Uri x:uriListImage){
-            System.out.println(x.getPath());
+    }
+
+    private void uploadList2Firebase(List<Uri> uriList) {
+        for (Uri x:uriList){
+            upload2Firebase(x);
+        }
+//        writeToFirebaseDatabase();
+    }
+
+    private void upload2Firebase(Uri filePath) {
+        FirebaseStorage storage;
+        StorageReference storageReference;
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        if (filePath != null) {
+            ProgressDialog progressDialog
+                    = new ProgressDialog(getActivity());
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+            StorageReference ref = storageReference.child(UUID.randomUUID().toString());
+            ref.putFile(filePath)
+                    .addOnSuccessListener(
+                            taskSnapshot -> {
+                                progressDialog.dismiss();
+                                Toast.makeText(getActivity(),"Image Uploaded!!",Toast.LENGTH_SHORT).show();
+                                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        listUri2Upload.add(uri.toString());
+                                        if (listUri2Upload.size()==size){
+//                                            writeToFirebaseDatabase();
+                                        }
+                                    }
+                                });
+                            })
+                    .addOnFailureListener(e -> {
+                        progressDialog.dismiss();
+                        Toast.makeText(getActivity(),"Failed " + e.getMessage(),Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnProgressListener(taskSnapshot -> {
+                        double progress= (100.0* taskSnapshot.getBytesTransferred()/ taskSnapshot.getTotalByteCount());
+                        progressDialog.setMessage("Uploaded "+ (int) progress + "%");
+                    });
         }
     }
 
+    private void writeToFirebaseDatabase(PostModel post) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        reference.child("post").push().setValue(post, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@com.google.firebase.database.annotations.Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                progressDialog.dismiss();
+                Toast.makeText(getActivity(), "Thành công", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     private void setSpinnerQuan(){
         String[] listQuanHN = new String[]{"Hai Bà Trưng","Ba Đình","Bắc Từ Liêm","Nam Từ Liêm","Hà Đông","Hoàn Kiếm","Long Biên","Đống Đa","Cầu Giấy","Thanh Xuân","Tây Hồ","Hoàng Mai",};
         Arrays.sort(listQuanHN);

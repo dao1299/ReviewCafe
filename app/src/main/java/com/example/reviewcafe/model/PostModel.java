@@ -1,24 +1,24 @@
 package com.example.reviewcafe.model;
 
-import android.net.Uri;
+
 
 import java.util.List;
 
 public class PostModel {
-    private String idPost;
+    private String idAuthor;
     private String titlePost;
-    private Uri srcImg;
+    private String srcImg;
     private String authorPost;
     private String pricePost;
     private String addressPost;
     private String time;
     private String description;
-    private List<Uri> listImg;
+    private List<String> listImg;
     private String district;
     private String theLoai;
 
-    public PostModel(String idPost, String titlePost, Uri srcImg, String authorPost, String pricePost, String addressPost, String time, String description, List<Uri> listImg, String district, String theLoai) {
-        this.idPost = idPost;
+    public PostModel(String idPost, String titlePost, String srcImg, String authorPost, String pricePost, String addressPost, String time, String description, List<String> listImg, String district, String theLoai) {
+        this.idAuthor = idPost;
         this.titlePost = titlePost;
         this.srcImg = srcImg;
         this.authorPost = authorPost;
@@ -31,8 +31,8 @@ public class PostModel {
         this.theLoai = theLoai;
     }
 
-    public PostModel(String idPost, String titlePost, Uri srcImg, String authorPost, String pricePost, String addressPost, String time, String description, List<Uri> listImg, String district) {
-        this.idPost = idPost;
+    public PostModel(String idPost, String titlePost, String srcImg, String authorPost, String pricePost, String addressPost, String time, String description, List<String> listImg, String district) {
+        this.idAuthor = idPost;
         this.titlePost = titlePost;
         this.srcImg = srcImg;
         this.authorPost = authorPost;
@@ -60,11 +60,11 @@ public class PostModel {
         this.description = description;
     }
 
-    public List<Uri> getListImg() {
+    public List<String> getListImg() {
         return listImg;
     }
 
-    public void setListImg(List<Uri> listImg) {
+    public void setListImg(List<String> listImg) {
         this.listImg = listImg;
     }
 
@@ -76,8 +76,8 @@ public class PostModel {
         this.district = district;
     }
 
-    public PostModel(String idPost, String titlePost, Uri srcImg, String authorPost, String pricePost, String addressPost) {
-        this.idPost = idPost;
+    public PostModel(String idPost, String titlePost, String srcImg, String authorPost, String pricePost, String addressPost) {
+        this.idAuthor = idPost;
         this.titlePost = titlePost;
         this.srcImg = srcImg;
         this.authorPost = authorPost;
@@ -88,12 +88,12 @@ public class PostModel {
     public PostModel() {
     }
 
-    public String getIdPost() {
-        return idPost;
+    public String getIdAuthor() {
+        return idAuthor;
     }
 
-    public void setIdPost(String idPost) {
-        this.idPost = idPost;
+    public void setIdAuthor(String idAuthor) {
+        this.idAuthor = idAuthor;
     }
 
     public String getTitlePost() {
@@ -104,11 +104,11 @@ public class PostModel {
         this.titlePost = titlePost;
     }
 
-    public Uri getSrcImg() {
+    public String getSrcImg() {
         return srcImg;
     }
 
-    public void setSrcImg(Uri srcImg) {
+    public void setSrcImg(String srcImg) {
         this.srcImg = srcImg;
     }
 
@@ -139,7 +139,7 @@ public class PostModel {
     @Override
     public String toString() {
         return "PostModel{" +
-                "idPost='" + idPost + '\'' +
+                "idPost='" + idAuthor + '\'' +
                 ", titlePost='" + titlePost + '\'' +
                 ", srcImg=" + srcImg +
                 ", authorPost='" + authorPost + '\'' +

@@ -1,6 +1,7 @@
 package com.example.reviewcafe.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         holder.txtAuthor.setText(postElement.getAuthorPost());
         holder.txtPrice.setText(postElement.getPricePost());
         holder.txtAddress.setText(postElement.getAddressPost());
-        holder.imgPost.setImageURI(postElement.getSrcImg());
+        holder.imgPost.setImageURI(Uri.parse(postElement.getSrcImg()));
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
