@@ -295,6 +295,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:justificationMode="inter_word"
                     android:text="@string/tempcontent"
                     android:textSize="16sp" />

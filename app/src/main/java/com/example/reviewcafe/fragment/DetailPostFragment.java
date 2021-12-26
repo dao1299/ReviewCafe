@@ -1,5 +1,7 @@
 package com.example.reviewcafe.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -159,7 +161,21 @@ public class DetailPostFragment extends Fragment {
         imgDeletePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+                dialogBuilder.setTitle("Xác nhận");
+                dialogBuilder.setMessage("Bạn có chắc chắn xóa bài viết này không?");
+                dialogBuilder.setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        showDialog("Xóa bài viết","Thành công");
+                    }
+                });
+                dialogBuilder.setPositiveButton("Thôi", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog dialog = dialogBuilder.create();
+                dialog.show();
             }
         });
         txtPostComment.setOnClickListener(new View.OnClickListener() {
@@ -174,6 +190,7 @@ public class DetailPostFragment extends Fragment {
                     }
                     commentAdapter.notifyDataSetChanged();
                     edtCommentPost.setText("");
+                    rcvComment.requestFocus();
                 }else{
                     showDialog("Thông báo","Bình luận thì phải viết gì gì vào chứ");
                 }
