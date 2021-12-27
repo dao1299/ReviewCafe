@@ -1,9 +1,7 @@
 package com.example.reviewcafe.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +10,9 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.reviewcafe.R;
 
-import java.io.IOException;
 import java.util.List;
 
 public class PhotoUriAdapter extends RecyclerView.Adapter<PhotoUriAdapter.ViewHolder> {
@@ -23,8 +21,11 @@ public class PhotoUriAdapter extends RecyclerView.Adapter<PhotoUriAdapter.ViewHo
     public PhotoUriAdapter(Context context) {
         this.context = context;
     }
-    public void setDataPhoto(List<Uri> listPhoto){
-        this.listPhoto=listPhoto;
+    public void setDataPhoto(List<Uri> listPhoto) {
+        this.listPhoto = listPhoto;
+        for (Uri x : listPhoto) {
+            System.out.println("Link: " + x);
+        }
         notifyDataSetChanged();
     }
 
@@ -39,13 +40,14 @@ public class PhotoUriAdapter extends RecyclerView.Adapter<PhotoUriAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Uri uri = listPhoto.get(position);
-        if (uri==null) return;
-        try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(),uri);
-            if (bitmap!=null) holder.imgPhoto.setImageURI(listPhoto.get(position));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        if (uri == null) return;
+        Glide.with(context).load(uri).into(holder.imgPhoto);
+//        try {
+//            Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(),uri);
+//            if (bitmap!=null) holder.imgPhoto.setImageURI(listPhoto.get(position));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override

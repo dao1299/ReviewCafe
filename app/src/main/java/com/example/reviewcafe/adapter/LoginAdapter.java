@@ -1,12 +1,9 @@
 package com.example.reviewcafe.adapter;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.reviewcafe.fragment.SignInFragment;
@@ -39,9 +36,9 @@ public class LoginAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         String title = "";
         if (position==0){
-            title="Sign in";
+            title = "Đăng nhập";
         }else{
-            title="Sign up";
+            title = "Đăng ký";
         }
         return title;
     }

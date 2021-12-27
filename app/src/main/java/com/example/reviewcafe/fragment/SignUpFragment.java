@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.reviewcafe.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,12 +24,18 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.aviran.cookiebar2.CookieBar;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class SignUpFragment extends Fragment {
-    FirebaseAuth  firebaseAuth;
-    EditText edtNameUserSignup,edtEmailUserSignUp,edtPasswordSignup,edtConfirmPasswordSignup;
+    FirebaseAuth firebaseAuth;
+    EditText edtNameUserSignup, edtEmailUserSignUp, edtPasswordSignup, edtConfirmPasswordSignup;
     Button btnSignup;
     Fragment fragment;
     ProgressDialog progressDialog;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,7 +46,6 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         edtNameUserSignup = view.findViewById(R.id.edtNameSignup);
         edtEmailUserSignUp = view.findViewById(R.id.edtOldPassword);
         edtPasswordSignup = view.findViewById(R.id.edtNewPassword);
@@ -51,10 +57,9 @@ public class SignUpFragment extends Fragment {
                 if (edtConfirmPasswordSignup.getText().toString().equals(edtPasswordSignup.getText().toString())){
                     progressDialog = ProgressDialog.show(getActivity(), "Đăng ký","Đợi tí tẹo thôi mờ (>\"<)", true);
                     addEventSignup();
-
                 }
                 else{
-                    Toast.makeText(getActivity(), "Kiem tra lai mat khau", Toast.LENGTH_LONG).show();
+                    showDialog("Mật khẩu không khớp rồi", "");
                 }
             }
 
@@ -71,13 +76,12 @@ public class SignUpFragment extends Fragment {
                         if (task.isSuccessful()) {
                             updateProfile();
                             pushUserToFirebase();
-                            Toast.makeText(getActivity(), "Đăng ký thành công roài nè!",
-                                    Toast.LENGTH_SHORT).show();
-                            fragment = HomeFragment.newInstance(edtNameUserSignup.getText().toString());
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.containerContentMain,fragment,"TAG").commit();
+
+                            showDialog("Đăng ký", "Đăng ký thành công roài nè!\nĐăng nhập đi nhó");
+                            ViewPager viewPager = getActivity().findViewById(R.id.vpgLogin);
+                            viewPager.setCurrentItem(0);
                         } else {
-                            Toast.makeText(getActivity(), "Có cái gì đó khum đúng rồi í.",
-                                    Toast.LENGTH_SHORT).show();
+                            showDialog("Có cái gì đó khum đúng rồi í.", "");
                         }
                         progressDialog.dismiss();
                     }
@@ -94,7 +98,7 @@ public class SignUpFragment extends Fragment {
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(edtNameUserSignup.getText().toString())
                 .build();
-
+        List<String> listFavor = new ArrayList<>();
         user.updateProfile(profileUpdates)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -102,17 +106,26 @@ public class SignUpFragment extends Fragment {
                         ref.child("email").setValue(user.getEmail());
                         ref.child("name").setValue(user.getDisplayName());
                         ref.child("Uid").setValue(user.getUid());
-                        ref.child("list_favorite").setValue(null);
+                        ref.child("list_favorite").setValue(listFavor);
                         Toast.makeText(getActivity(), "Done", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    private boolean validateForm(String email,String pw) {
+    private boolean validateForm(String email, String pw) {
         boolean valid = true;
         if (email.isEmpty()) valid = false;
-        if (pw.isEmpty() || pw.length()<6) valid = false;
+        if (pw.isEmpty() || pw.length() < 6) valid = false;
         return valid;
     }
 
+    public void showDialog(String title, String content) {
+        CookieBar.build(getActivity())
+                .setTitle(title)
+                .setIconAnimation(R.animator.scale_with_alpha)
+                .setCookiePosition(CookieBar.TOP)
+                .setMessage(content)
+                .setDuration(3000) // 5 seconds
+                .show();
+    }
 }

@@ -1,13 +1,13 @@
 package com.example.reviewcafe.model;
 
 
-
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 
 public class PostModel implements Serializable {
+    private String idPost;
     private String idAuthor;
+    private String imgAuthor;
     private String titlePost;
     private String srcImg;
     private String authorPost;
@@ -16,12 +16,14 @@ public class PostModel implements Serializable {
     private String time;
     private String description;
     private List<String> listImg;
+    private List<String> listUserLike;
     private String district;
     private String theLoai;
 
-
-    public PostModel(String idPost, String titlePost, String srcImg, String authorPost, String pricePost, String addressPost, String time, String description, List<String> listImg, String district, String theLoai) {
-        this.idAuthor = idPost;
+    public PostModel(String idPost, String idAuthor, String imgAuthor, String titlePost, String srcImg, String authorPost, String pricePost, String addressPost, String time, String description, List<String> listImg, List<String> listUserLike, String district, String theLoai) {
+        this.idPost = idPost;
+        this.idAuthor = idAuthor;
+        this.imgAuthor = imgAuthor;
         this.titlePost = titlePost;
         this.srcImg = srcImg;
         this.authorPost = authorPost;
@@ -30,22 +32,84 @@ public class PostModel implements Serializable {
         this.time = time;
         this.description = description;
         this.listImg = listImg;
+        this.listUserLike = listUserLike;
         this.district = district;
         this.theLoai = theLoai;
     }
 
-    public PostModel(String idPost, String titlePost, String srcImg, String authorPost, String pricePost, String addressPost, String time, String description, List<String> listImg, String district) {
-        this.idAuthor = idPost;
-        this.titlePost = titlePost;
-        this.srcImg = srcImg;
-        this.authorPost = authorPost;
-        this.pricePost = pricePost;
-        this.addressPost = addressPost;
-        this.time = time;
-        this.description = description;
-        this.listImg = listImg;
-        this.district = district;
+    public String getImgAuthor() {
+        return imgAuthor;
     }
+
+    public void setImgAuthor(String imgAuthor) {
+        this.imgAuthor = imgAuthor;
+    }
+
+    //    public PostModel(String idPost, String idAuthor, String titlePost, String srcImg, String authorPost, String pricePost, String addressPost, String time, String description, List<String> listImg, List<String> listUserLike, String district, String theLoai) {
+//        this.idPost = idPost;
+//        this.idAuthor = idAuthor;
+//        this.titlePost = titlePost;
+//        this.srcImg = srcImg;
+//        this.authorPost = authorPost;
+//        this.pricePost = pricePost;
+//        this.addressPost = addressPost;
+//        this.time = time;
+//        this.description = description;
+//        this.listImg = listImg;
+//        this.listUserLike = listUserLike;
+//        this.district = district;
+//        this.theLoai = theLoai;
+//    }
+
+    public List<String> getListUserLike() {
+        return listUserLike;
+    }
+
+    public void setListUserLike(List<String> listUserLike) {
+        this.listUserLike = listUserLike;
+    }
+
+    //    public PostModel(String idPost, String idAuthor, String titlePost, String srcImg, String authorPost, String pricePost, String addressPost, String time, String description, List<String> listImg, String district, String theLoai) {
+//        this.idPost = idPost;
+//        this.idAuthor = idAuthor;
+//        this.titlePost = titlePost;
+//        this.srcImg = srcImg;
+//        this.authorPost = authorPost;
+//        this.pricePost = pricePost;
+//        this.addressPost = addressPost;
+//        this.time = time;
+//        this.description = description;
+//        this.listImg = listImg;
+//        this.district = district;
+//        this.theLoai = theLoai;
+//    }
+
+//    public PostModel(String idPost, String titlePost, String srcImg, String authorPost, String pricePost, String addressPost, String time, String description, List<String> listImg, String district, String theLoai) {
+//        this.idAuthor = idPost;
+//        this.titlePost = titlePost;
+//        this.srcImg = srcImg;
+//        this.authorPost = authorPost;
+//        this.pricePost = pricePost;
+//        this.addressPost = addressPost;
+//        this.time = time;
+//        this.description = description;
+//        this.listImg = listImg;
+//        this.district = district;
+//        this.theLoai = theLoai;
+//    }
+//
+//    public PostModel(String idPost, String titlePost, String srcImg, String authorPost, String pricePost, String addressPost, String time, String description, List<String> listImg, String district) {
+//        this.idAuthor = idPost;
+//        this.titlePost = titlePost;
+//        this.srcImg = srcImg;
+//        this.authorPost = authorPost;
+//        this.pricePost = pricePost;
+//        this.addressPost = addressPost;
+//        this.time = time;
+//        this.description = description;
+//        this.listImg = listImg;
+//        this.district = district;
+//    }
 
     public String getTime() {
         return time;
@@ -57,6 +121,14 @@ public class PostModel implements Serializable {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getIdPost() {
+        return idPost;
+    }
+
+    public void setIdPost(String idPost) {
+        this.idPost = idPost;
     }
 
     public void setDescription(String description) {
@@ -87,14 +159,14 @@ public class PostModel implements Serializable {
         this.district = district;
     }
 
-    public PostModel(String idPost, String titlePost, String srcImg, String authorPost, String pricePost, String addressPost) {
-        this.idAuthor = idPost;
-        this.titlePost = titlePost;
-        this.srcImg = srcImg;
-        this.authorPost = authorPost;
-        this.pricePost = pricePost;
-        this.addressPost = addressPost;
-    }
+//    public PostModel(String idPost, String titlePost, String srcImg, String authorPost, String pricePost, String addressPost) {
+//        this.idAuthor = idPost;
+//        this.titlePost = titlePost;
+//        this.srcImg = srcImg;
+//        this.authorPost = authorPost;
+//        this.pricePost = pricePost;
+//        this.addressPost = addressPost;
+//    }
 
     public PostModel() {
     }
@@ -150,15 +222,18 @@ public class PostModel implements Serializable {
     @Override
     public String toString() {
         return "PostModel{" +
-                "idPost='" + idAuthor + '\'' +
+                "idPost='" + idPost + '\'' +
+                ", idAuthor='" + idAuthor + '\'' +
+                ", imgAuthor='" + imgAuthor + '\'' +
                 ", titlePost='" + titlePost + '\'' +
-                ", srcImg=" + srcImg +
+                ", srcImg='" + srcImg + '\'' +
                 ", authorPost='" + authorPost + '\'' +
                 ", pricePost='" + pricePost + '\'' +
                 ", addressPost='" + addressPost + '\'' +
                 ", time='" + time + '\'' +
                 ", description='" + description + '\'' +
                 ", listImg=" + listImg +
+                ", listUserLike=" + listUserLike +
                 ", district='" + district + '\'' +
                 ", theLoai='" + theLoai + '\'' +
                 '}';

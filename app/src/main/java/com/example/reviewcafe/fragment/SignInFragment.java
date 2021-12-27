@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,14 +22,18 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.aviran.cookiebar2.CookieBar;
+
 public class SignInFragment extends Fragment {
     FirebaseAuth firebaseAuth;
     ProgressDialog progressDialog;
     private String data;
-    private SignInFragment(){
+
+    private SignInFragment() {
 
     }
-    public static SignInFragment newInstance(String data){
+
+    public static SignInFragment newInstance(String data) {
         Fragment fragment = new SignInFragment();
         Bundle bundle = new Bundle();
         bundle.putString("DATA",data);
@@ -68,24 +71,34 @@ public class SignInFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             setMenu();
-
+                            showDialog("Đăng nhập", "Đăng nhập thành công!");
                             HomeFragment homeFragment = HomeFragment.newInstance("slicckkkkk");
                             FragmentManager fragmentManager = getParentFragmentManager();
                             fragmentManager.beginTransaction().replace(R.id.containerContentMain,homeFragment,"TAG").commit();
 
                         } else {
-                            Toast.makeText(getActivity(), "Có cái gì đó khum đúng rồi í.",
-                                    Toast.LENGTH_SHORT).show();
+                            showDialog("Đăng nhập", "Có cái gì đó khum đúng rồi í.");
                         }
                         progressDialog.dismiss();
                     }
                 });
     }
-    private void setMenu(){
-        NavigationView navigationView=getActivity().findViewById(R.id.navView);
-        MainActivity mainActivity =new MainActivity();
+
+    private void setMenu() {
+        NavigationView navigationView = getActivity().findViewById(R.id.navView);
+        MainActivity mainActivity = new MainActivity();
         mainActivity.setMenuInflater(navigationView);
         TextView txtTitle = getActivity().findViewById(R.id.txtTitle);
         txtTitle.setText("Trang chủ");
+    }
+
+    public void showDialog(String title, String content) {
+        CookieBar.build(getActivity())
+                .setTitle(title)
+                .setIconAnimation(R.animator.scale_with_alpha)
+                .setCookiePosition(CookieBar.TOP)
+                .setMessage(content)
+                .setDuration(3000) // 5 seconds
+                .show();
     }
 }

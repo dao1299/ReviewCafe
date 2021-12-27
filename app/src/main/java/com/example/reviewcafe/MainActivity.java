@@ -6,7 +6,6 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,13 +17,11 @@ import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
 import com.example.reviewcafe.fragment.HomeFragment;
 import com.example.reviewcafe.fragment.InfoUserFragment;
 import com.example.reviewcafe.fragment.ListPostFragment;
 import com.example.reviewcafe.fragment.LoginFragment;
 import com.example.reviewcafe.fragment.NewPostFragment;
-import com.example.reviewcafe.fragment.SignInFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
         displayView(R.id.menu_home);
+
     }
 
     public void setMenuInflater(NavigationView navigationView) {
@@ -75,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
             else
         {
-            txtNameUserMenu.setText(firebaseUser.getDisplayName()+"");
+            txtNameUserMenu.setText(firebaseUser.getDisplayName());
             cardView.setVisibility(View.VISIBLE);
             if (firebaseUser.getPhotoUrl()==null){
                 imgAvarUserMenu.setImageResource(R.drawable.person);
@@ -116,18 +114,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.menu_location:
                 txtTitle.setText("Danh sách bài đóng góp");
-                fragment= ListPostFragment.newInstance("location");
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerContentMain,fragment,"TAG").commit();
+                fragment = ListPostFragment.newInstance("location");
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerContentMain, fragment, "TAG").commit();
                 break;
             case R.id.menu_home:
                 txtTitle.setText("Trang chủ");
-                fragment = HomeFragment.newInstance("data");
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerContentMain,fragment,"TAG").commit();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    fragment = HomeFragment.newInstance(user.getDisplayName());
+                } else {
+                    fragment = HomeFragment.newInstance("");
+                }
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerContentMain, fragment, "TAG").commit();
                 break;
             case R.id.menu_profile:
                 txtTitle.setText("Trang cá nhân");
                 fragment = new InfoUserFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerContentMain,fragment,"TAG").commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerContentMain, fragment, "TAG").commit();
                 break;
             case R.id.menu_add_post:
                 txtTitle.setText("Thêm bài mới");
