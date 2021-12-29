@@ -111,6 +111,7 @@ public class NewPostFragment extends Fragment {
             PostModel postTemp = (PostModel) getArguments().getSerializable("DATA");
             postModel = postTemp;
             listUserLike = postModel.getListUserLike();
+            btnPostNewPost.setText("Cập nhật bài đăng");
             System.out.println(postModel);
             showData();
         }
